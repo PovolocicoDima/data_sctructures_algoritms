@@ -22,3 +22,5 @@ function binarySearch(list, item) {
 
 const result = binarySearch(list_of_items, 67);
 console.log(result);
+
+console.log(Math.log2(128));
