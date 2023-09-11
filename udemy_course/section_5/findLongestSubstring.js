@@ -35,6 +35,7 @@ function findLongestSubstring(str) {
     //I don't understand this. it seems you could set it to anything because the function just checks if it exists or not.
     seen[char] = i + 1;
   }
+
   return longest;
 }
 
