@@ -27,4 +27,4 @@ function oneLineSolution() {
 console.log(areThereDuplicates(1, 2, 3)); // false
 console.log(areThereDuplicates(1, 2, 2)); // true
 console.log(areThereDuplicates("a", "b", "c", "a")); // true
-console.log(oneLineSolution("a", "b", "c", "a"));
+console.log(oneLineSolution("1", "a", "b", "c", "a")); // true

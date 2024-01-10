@@ -32,13 +32,13 @@ const one = [1, 1, 1, 1, 1, 1, 1, 2];
 const two = [-1, -2, -3, 1, 2, 2, 2, 2, 3, 4];
 const three = [-10, -9, -7, 7];
 const four = [-1, 1, 2, 3, 4, 4, 4, 4];
-const five = [];
+const five = [0, 0, 0, 0, 0, 0, 0];
 
-console.log(secondVariant(one));
-console.log(secondVariant(two));
-console.log(secondVariant(three));
-console.log(secondVariant(four));
-console.log(secondVariant(five));
+console.log(secondVariant(one)); //2
+console.log(secondVariant(two)); //  7
+console.log(secondVariant(three)); //4
+console.log(secondVariant(four)); // 5
+console.log(secondVariant(five)); // 0
 
 // console.log(countUniqueValues(one));
 // console.log(countUniqueValues(two));
