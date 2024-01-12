@@ -35,4 +35,19 @@ function insertionSort(arr) {
   return arr;
 }
 
-console.log(insertionSort([4, 1, 0, 2, -1]));
+// console.log(insertionSort([4, 1, 0, 2, -1]));
+
+function myInsertionSort(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    let currentItem = arr[i];
+    let j = i - 1;
+    for (j; j >= 0 && arr[j] > currentItem; j--) {
+      arr[j + 1] = arr[j];
+    }
+    arr[j + 1] = currentItem;
+  }
+
+  return arr;
+}
+
+console.log(myInsertionSort([-3, 3, 4, 1, 2]));
