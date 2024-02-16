@@ -141,6 +141,24 @@ class SinglyLinkedList {
         this.length -= 1
         return current
     }
+
+    reverse() {
+        // if (this.length === 0) return undefined
+        let node = this.head
+        this.head = this.tail
+        this.tail = node
+
+        let prev = null
+        let next = null
+        for (let i = 0; i < this.length; i++) {
+            next = node.next
+            node.next = prev
+            prev = node
+            node = next
+        }
+
+        return this
+    }
 }
 
 const list = new SinglyLinkedList()
@@ -149,5 +167,7 @@ list.push('are')
 list.push('you')
 list.push('doing')
 
-console.log(list.remove(1))
+// console.log(list.remove(1))
+console.log(list.traverse())
+list.reverse()
 console.log(list.traverse())
