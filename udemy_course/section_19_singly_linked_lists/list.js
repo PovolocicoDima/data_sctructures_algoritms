@@ -78,20 +78,35 @@ class SinglyLinkedList {
             return temp
         }
     }
+
+    unshift(val) {
+        const newNode = new Node(val)
+        if (this.length === 0) {
+            this.head = newNode
+            this.tail = newNode
+        } else {
+            const temp = this.head
+            this.head = newNode
+            newNode.next = temp
+        }
+        this.length += 1
+        return this
+    }
 }
 
 const list = new SinglyLinkedList()
-list.push('How')
-list.push('are')
-list.push('you')
+// list.push('How')
+// list.push('are')
+// list.push('you')
 // console.log(list)
 // console.log(list.head)
 // console.log(list.head.next)
 // console.log(list.tail)
 
-console.log(list.pop())
-console.log(list.shift())
-console.log(list.shift())
-console.log(list.shift())
-list.push('How')
-console.log(list)
+// console.log(list.pop())
+// console.log(list.shift())
+// console.log(list.shift())
+// console.log(list.shift())
+console.log(list.unshift('are'))
+// list.unshift('How')
+// console.log(list)
