@@ -12,6 +12,20 @@ class SinglyLinkedList {
         this.length = 0;
     }
 
+    traverse() {
+        let current = this.head
+        while(current) {
+            console.log(current)
+            current = current.next
+        }
+    }
+
+    clearList() {
+        this.head = null
+        this.tail = null
+        this.length = 0
+    }
+
     push(val) {
         const newNode = new Node(val)
         if (!this.head) {
@@ -30,9 +44,7 @@ class SinglyLinkedList {
             return undefined
         } else if (this.length === 1) {
             const temp = this.head
-            this.head = null
-            this.tail = null
-            this.length = 0
+            this.clearList()
             return temp
         } else {
             let temp = null
@@ -51,11 +63,19 @@ class SinglyLinkedList {
         }
     }
 
-    traverse() {
-        let current = this.head
-        while(current) {
-            console.log(current)
-            current = current.next
+    shift() {
+        if (this.length === 0) {
+            return undefined
+        } else if (this.length === 1) {
+            const temp = this.head
+            this.clearList()
+            return temp
+        } else {
+            const temp = this.head
+            const tempNext = this.head.next
+            this.head = tempNext
+            this.length -= 1
+            return temp
         }
     }
 }
@@ -70,6 +90,8 @@ list.push('you')
 // console.log(list.tail)
 
 console.log(list.pop())
-console.log(list.pop())
-console.log(list.pop())
+console.log(list.shift())
+console.log(list.shift())
+console.log(list.shift())
+list.push('How')
 console.log(list)
