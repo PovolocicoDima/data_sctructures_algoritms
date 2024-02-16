@@ -92,21 +92,33 @@ class SinglyLinkedList {
         this.length += 1
         return this
     }
+
+    get(idx) {
+        if (this.length === 0 || idx >= this.length) {
+            return undefined
+        } else {
+            let current = this.head
+            for (let i = 0; i < idx; i++) {
+                current = current.next
+            }
+
+            return current
+        }
+    }
 }
 
 const list = new SinglyLinkedList()
-// list.push('How')
-// list.push('are')
-// list.push('you')
-// console.log(list)
-// console.log(list.head)
-// console.log(list.head.next)
-// console.log(list.tail)
+list.push('How')
+list.push('are')
+list.push('you')
+list.push('doing')
+list.push('today')
+list.push('is')
+list.push('this')
+list.push('right')
+list.push('question')
 
-// console.log(list.pop())
-// console.log(list.shift())
-// console.log(list.shift())
-// console.log(list.shift())
-console.log(list.unshift('are'))
+// console.log(list)
+console.log(list.get(4))
 // list.unshift('How')
 // console.log(list)
