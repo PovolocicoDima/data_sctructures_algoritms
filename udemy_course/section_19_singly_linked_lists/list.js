@@ -94,7 +94,7 @@ class SinglyLinkedList {
     }
 
     get(idx) {
-        if (this.length === 0 || idx >= this.length) {
+        if (this.length === 0 || idx >= this.length || idx < 0) {
             return undefined
         } else {
             let current = this.head
@@ -105,20 +105,22 @@ class SinglyLinkedList {
             return current
         }
     }
+
+    set(idx, val) {
+        const foundNode = this.get(idx)
+        if (foundNode) {
+            foundNode.val = val
+            return true
+        } 
+
+        return false
+    }
 }
 
 const list = new SinglyLinkedList()
 list.push('How')
 list.push('are')
 list.push('you')
-list.push('doing')
-list.push('today')
-list.push('is')
-list.push('this')
-list.push('right')
-list.push('question')
 
-// console.log(list)
-console.log(list.get(4))
-// list.unshift('How')
-// console.log(list)
+console.log(list.set(1, 'test'))
+console.log(list)
