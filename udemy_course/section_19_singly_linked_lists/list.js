@@ -118,22 +118,28 @@ class SinglyLinkedList {
 
     insert(idx, val) {
         if (idx < 0 || idx > this.length) return false
-        else if (idx === this.length) {
-            this.push(val)
-            return true
-        } else if (idx === 0) {
-            this.unshift(val)
-            return true
-        }
-        else {
-            const newNode = new Node(val)
-            const current = this.get(idx)
-            const past = this.get(idx - 1)
-            past.next = newNode
-            newNode.next = current
-            this.length += 1
-            return true
-        }
+        else if (idx === this.length) return !!this.push(val) 
+        else if (idx === 0) return !!this.unshift(val)
+
+        const newNode = new Node(val)
+        const current = this.get(idx)
+        const past = this.get(idx - 1)
+        past.next = newNode
+        newNode.next = current
+        this.length += 1
+        return true
+    }
+
+    remove(idx) {
+        if (idx < 0 || idx >= this.length) return undefined
+        if (idx === 0) return this.shift()
+        if (idx === this.length - 1) return this.pop()
+
+        const current = this.get(idx)
+        const past = this.get(idx - 1)
+        past.next = current.next
+        this.length -= 1
+        return current
     }
 }
 
@@ -141,6 +147,7 @@ const list = new SinglyLinkedList()
 list.push('How')
 list.push('are')
 list.push('you')
+list.push('doing')
 
-console.log(list.insert(0, 'test'))
+console.log(list.remove(1))
 console.log(list.traverse())
