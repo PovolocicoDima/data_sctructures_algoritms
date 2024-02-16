@@ -115,6 +115,26 @@ class SinglyLinkedList {
 
         return false
     }
+
+    insert(idx, val) {
+        if (idx < 0 || idx > this.length) return false
+        else if (idx === this.length) {
+            this.push(val)
+            return true
+        } else if (idx === 0) {
+            this.unshift(val)
+            return true
+        }
+        else {
+            const newNode = new Node(val)
+            const current = this.get(idx)
+            const past = this.get(idx - 1)
+            past.next = newNode
+            newNode.next = current
+            this.length += 1
+            return true
+        }
+    }
 }
 
 const list = new SinglyLinkedList()
@@ -122,5 +142,5 @@ list.push('How')
 list.push('are')
 list.push('you')
 
-console.log(list.set(1, 'test'))
-console.log(list)
+console.log(list.insert(0, 'test'))
+console.log(list.traverse())
