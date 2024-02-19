@@ -143,13 +143,13 @@ class SinglyLinkedList {
     }
 
     reverse() {
-        // if (this.length === 0) return undefined
         let node = this.head
         this.head = this.tail
         this.tail = node
 
         let prev = null
         let next = null
+
         for (let i = 0; i < this.length; i++) {
             next = node.next
             node.next = prev
