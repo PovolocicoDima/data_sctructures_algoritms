@@ -13,6 +13,16 @@ class DoublyLinkedList {
         this.length = 0
     }
 
+    show() {
+        let current = this.head
+        for (let i = 0; i < this.length; i++) {
+            let result = current
+            current = current.next
+            console.dir(result)
+        }
+        console.log(`LENGTH: ${this.length}`)
+    }
+
     push(val) {
         const newNode = new Node(val)
         if (this.length === 0) {
@@ -66,12 +76,28 @@ class DoublyLinkedList {
             return oldHead
         }
     }
+
+    unshift(val) {
+        const newNode = new Node(val)
+        if (this.length === 0) {
+            this.head = newNode
+            this.tail = newNode
+        } else {
+            const oldHead = this.head
+            oldHead.prev = newNode
+            this.head = newNode
+            newNode.next = oldHead
+        }
+        this.length += 1
+        return this
+    }
 }
 
 const list = new DoublyLinkedList()
 list.push('first')
 list.push('second')
 list.push('third')
-console.log(list.shift())
-console.log(list)
+list.unshift('test')
+list.show()
+// console.log(list)
 
