@@ -91,13 +91,37 @@ class DoublyLinkedList {
         this.length += 1
         return this
     }
+
+    get(idx) {
+        if (this.length === 0 || idx < 0 || idx >= this.length) {
+            return undefined
+        } else if (idx <= Math.floor(this.length / 2)) {
+            let current = this.head
+            for (let i = 0; i < idx; i++) {
+                current = current.next
+            }
+
+            return current
+        } else if (idx > Math.floor(this.length / 2)) {
+            let current = this.tail
+            const idxCount = (this.length - idx) - 1
+            for (let i = 0; i < idxCount; i++) {
+                current = current.prev
+            }
+
+            return current
+        }
+    }
 }
 
 const list = new DoublyLinkedList()
 list.push('first')
 list.push('second')
 list.push('third')
-list.unshift('test')
-list.show()
+list.push('fourth')
+list.push('fifth')
+list.push('six')
+// list.unshift('test')
+console.log(list.get(3))
 // console.log(list)
 
