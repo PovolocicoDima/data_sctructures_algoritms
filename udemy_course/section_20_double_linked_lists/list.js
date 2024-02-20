@@ -112,6 +112,16 @@ class DoublyLinkedList {
             return current
         }
     }
+
+    set(idx, val) {
+        const current = this.get(idx)
+        if (current) {
+            current.val = val
+            return true
+        }
+
+        return false
+    }
 }
 
 const list = new DoublyLinkedList()
@@ -122,6 +132,6 @@ list.push('fourth')
 list.push('fifth')
 list.push('six')
 // list.unshift('test')
-console.log(list.get(3))
-// console.log(list)
+console.log(list.set(6, 'test'))
+list.show()
 
