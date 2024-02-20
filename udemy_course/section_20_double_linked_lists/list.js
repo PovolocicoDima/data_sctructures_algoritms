@@ -46,12 +46,32 @@ class DoublyLinkedList {
             return oldTail
         }
     }
+
+    shift() {
+        if (this.length === 0) {
+            return undefined
+        } else if (this.length === 1) {
+            const node = this.head
+            this.head = null
+            this.tail = null
+            this.length = 0
+            return node
+        } else {
+            const oldHead = this.head
+            const newHead = oldHead.next
+            this.head = newHead
+            this.head.prev = null
+            oldHead.next = null
+            this.length -= 1
+            return oldHead
+        }
+    }
 }
 
 const list = new DoublyLinkedList()
 list.push('first')
 list.push('second')
-console.log(list)
-console.log(list.pop())
+list.push('third')
+console.log(list.shift())
 console.log(list)
 
