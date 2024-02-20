@@ -52,6 +52,7 @@ class DoublyLinkedList {
             const newTail = oldTail.prev
             newTail.next = null
             this.tail = newTail
+            oldTail.prev = null
             this.length -= 1
             return oldTail
         }
@@ -122,16 +123,44 @@ class DoublyLinkedList {
 
         return false
     }
+
+    insert(idx, val) {
+        if (idx < 0 || idx > this.length) return false
+        if (idx === 0) return !!this.unshift(val)
+        if (idx === this.length) return !!this.push(val)
+
+        const newNode = new Node(val)
+        const pastNode = this.get(idx - 1)
+        const next = pastNode.next
+        pastNode.next = newNode
+        newNode.prev = pastNode
+        newNode.next = next
+        this.length += 1
+        return true
+    }
+
+    remove(idx) {
+        if (idx < 0 || idx >= this.length) return false
+        if (idx === 0) return this.shift()
+        if (idx === this.length - 1) return this.pop()
+
+        const node = this.get(idx)
+        const next = node.next
+        const prev = node.prev
+        prev.next = next
+        next.prev = prev
+        this.length -= 1
+        node.prev = null
+        node.next = null
+        return node
+    }
 }
 
 const list = new DoublyLinkedList()
 list.push('first')
 list.push('second')
 list.push('third')
-list.push('fourth')
-list.push('fifth')
-list.push('six')
 // list.unshift('test')
-console.log(list.set(6, 'test'))
+console.log(list.remove(2))
 list.show()
 
