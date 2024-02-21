@@ -3,6 +3,11 @@
     First in first out
 
     Обычная очередь: кто первый зашёл тот и первый вышел
+
+    INSERTION - O(1)
+    REMOVAL   - 0(1)
+    SEARCHING - O(N)
+    ACCESS    - O(N)
 */
 
 class Node {
@@ -35,8 +40,8 @@ class Queue {
     }
 
     dequeue() {
-        if (this.size === 0) return undefined
-        if (this.size === 1) return this.first
+        if (this.size === 0) return null
+        if (this.size === 1) this.last = null
 
         const oldFirst = this.first
         this.first = oldFirst.next
@@ -46,8 +51,8 @@ class Queue {
 }
 
 const queue = new Queue()
-queue.push(1)
-queue.push(2)
-queue.push(3)
-console.log(queue.pop())
+// queue.enqueue(1)
+// queue.enqueue(2)
+// queue.enqueue(3)
+console.log(queue.dequeue())
 console.log(queue)
