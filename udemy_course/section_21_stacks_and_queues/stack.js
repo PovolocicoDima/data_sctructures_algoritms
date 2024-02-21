@@ -7,6 +7,11 @@
     стопки и возьмут
 
     Stack - это концепт и он может быть реализован по разному
+
+    INSERTION - 0(1)
+    REMOVAL   - 0(1)
+    SEARCHING - O(N)
+    ACCESS    - O(N)
 */
 
 class Node {
