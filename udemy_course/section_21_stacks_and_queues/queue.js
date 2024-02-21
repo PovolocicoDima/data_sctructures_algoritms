@@ -19,7 +19,7 @@ class Queue {
         this.size = 0
     }
     
-    push(val) {
+    enqueue(val) {
         const newNode = new Node(val)
         if (this.size === 0) {
             this.first = newNode
@@ -34,7 +34,7 @@ class Queue {
         return this.size
     }
 
-    pop() {
+    dequeue() {
         if (this.size === 0) return undefined
         if (this.size === 1) return this.first
 
