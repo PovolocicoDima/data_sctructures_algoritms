@@ -1,3 +1,9 @@
+/*  
+    INSERTION : O(LOG(N))
+    SEARCHING : O(LOG(N))
+*/
+
+
 class Node {
     constructor(value) {
         this.value = value
