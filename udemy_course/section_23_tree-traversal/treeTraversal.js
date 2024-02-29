@@ -85,6 +85,7 @@ class BinarySearchTree {
      * ветки что идут справа. Когда рекурсия доходит до конца ветки и у листа
      * нет правой и левой ветки, то она начинает очищать call stack и рекурсия
      * начинает раскручиваться до момент крайней правой ветки, там всё повторяется
+     * 
      * @returns {number[]}
      */
     DepthFirstSearchPreorder() {
@@ -120,13 +121,40 @@ class BinarySearchTree {
 
         return visited
     }
+
+    /**
+     * DFS IN ORDER
+     * До конца проходимся по левой ветке, ничего не записываем пока
+     * не упрёмся по левой стороне до листка, затем начинаем добавлять
+     * всю левую ветку с конца по уровням, доходим до рута и делаем тоже
+     * самое с правой стороной
+     * 
+     * Все три метода меняются только порядком добавления элементов в массив по которым
+     * мы прошлись
+     * 
+     * @returns {number[]}
+     */
+    DepthFirstSearchInOrder() {
+        const visited = []
+        let current = this.root
+        function traversal(node) {
+            if (node.left) traversal(node.left)
+            visited.push(node.value)
+            if (node.right) traversal(node.right)
+        }
+        traversal(current)
+
+        return visited
+    }
 }
 
 const binaryTree = new BinarySearchTree()
 binaryTree.insert(10)
 binaryTree.insert(6)
 binaryTree.insert(15)
+binaryTree.insert(12)
+binaryTree.insert(11)
 binaryTree.insert(3)
 binaryTree.insert(8)
 binaryTree.insert(20)
-console.log(binaryTree.DepthFirstSearchPostorder())
+console.log(binaryTree.DepthFirstSearchInOrder())
