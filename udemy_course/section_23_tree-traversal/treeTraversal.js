@@ -78,7 +78,7 @@ class BinarySearchTree {
         return data
     }
     /**
-     * DFS
+     * DFS PREORDER
      * Сверху вниз до конца одной ветки, добавляем всё подряд через рекурсию
      * Только когда с одной веткой закончили только тогда переходить ко второй
      * по сути по идём по крайнелй левой ветке до конца добавляя по пути все
@@ -87,7 +87,7 @@ class BinarySearchTree {
      * начинает раскручиваться до момент крайней правой ветки, там всё повторяется
      * @returns {number[]}
      */
-    DepthFirstSearch() {
+    DepthFirstSearchPreorder() {
         let data = []
         let current = this.root
         function traverse(node) {
@@ -98,6 +98,28 @@ class BinarySearchTree {
         traverse(current)
         return data
     }
+
+    /**
+     * DFS POSTORDER
+     * идём сверху вниз, но только считываем значения, ничего не добавляя
+     * когда доходим до конца то добавляем каждое отдельное дерево на 
+     * обоих ветках слева направо и снизу вверх, т.е. root добавляется 
+     * в последнюю очередь
+     * 
+     * @returns {number[]}
+     */
+    DepthFirstSearchPostorder() {
+        const visited = []
+        let current = this.root
+        function traversal(node) {
+            if (node.left) traversal(node.left)
+            if (node.right) traversal(node.right)
+            visited.push(node.value)
+        }
+        traversal(current)
+
+        return visited
+    }
 }
 
 const binaryTree = new BinarySearchTree()
@@ -107,4 +129,4 @@ binaryTree.insert(15)
 binaryTree.insert(3)
 binaryTree.insert(8)
 binaryTree.insert(20)
-console.log(binaryTree.DepthFirstSearch())
+console.log(binaryTree.DepthFirstSearchPostorder())
