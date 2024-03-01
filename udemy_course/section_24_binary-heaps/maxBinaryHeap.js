@@ -31,10 +31,54 @@ class MaxBinaryHeap {
         }
     }
 
+    cascadeDown() {
+        let idx = 0
+        let length = this.values.length
+        let element = this.values[0]
+
+        while(true) {
+            let leftIdx = 2 * idx + 1
+            let rightIdx = 2 * idx + 2
+            let leftChild, rightChild
+            let swapIdx = null
+
+            if (leftIdx < length) {
+                leftChild = this.values[leftIdx]
+                if (leftChild > element) {
+                    swapIdx = leftIdx
+                }
+            }
+
+            if (rightIdx < length) {
+                rightChild = this.values[rightIdx]
+                if ((swapIdx === null && rightChild > element) || 
+                    (swapIdx !== null && rightChild > leftChild)) 
+                {
+                    swapIdx = rightIdx
+                }
+            }
+
+            if (swapIdx === null) break;
+            this.values[idx] = this.values[swapIdx]
+            this.values[swapIdx] = element
+            idx = swapIdx
+        }
+    }
+
     insert(value) {
         this.values.push(value)
         this.bubbleUp()
         return this.values
+    }
+
+    extractMax() {
+        const max = this.values[0]
+        const end = this.values.pop()
+        if (this.values.length > 0) {
+          this.values[0] = end
+          this.cascadeDown()
+        }
+        return max
     }
 }
 
@@ -46,12 +90,13 @@ maxBinaryHeap.insert(18)
 maxBinaryHeap.insert(27)
 maxBinaryHeap.insert(12)
 maxBinaryHeap.insert(55)
-maxBinaryHeap.insert(32)
-maxBinaryHeap.insert(15)
-maxBinaryHeap.insert(40)
-maxBinaryHeap.insert(43)
-maxBinaryHeap.insert(100)
-maxBinaryHeap.insert(1)
-maxBinaryHeap.insert(0)
-maxBinaryHeap.insert(101)
+console.log(maxBinaryHeap.values)
+console.log(maxBinaryHeap.extractMax())
+console.log(maxBinaryHeap.extractMax())
+console.log(maxBinaryHeap.extractMax())
+console.log(maxBinaryHeap.extractMax())
+console.log(maxBinaryHeap.extractMax())
+console.log(maxBinaryHeap.extractMax())
+console.log(maxBinaryHeap.extractMax())
+console.log(maxBinaryHeap.extractMax())
 console.log(maxBinaryHeap.values)
