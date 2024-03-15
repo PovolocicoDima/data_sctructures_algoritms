@@ -52,14 +52,12 @@ class Graph {
   }
 
   deleteVertex(vertex) {
-    delete this.adjecencyList[vertex]
-    const keys = Object.keys(this.adjecencyList)
-    for (let i = 0; i < keys.length; i++) {
-      if (this.adjecencyList[keys[i]].includes(vertex))
-        this.adjecencyList[keys[i]] = this.adjecencyList[keys[i]].filter(
-          (i) => i !== vertex
-        )
+    while (this.adjecencyList[vertex].length) {
+      const adjencencyVertex = this.adjecencyList[vertex].pop()
+      this.removeEdge(vertex, adjencencyVertex)
     }
+
+    delete this.adjecencyList[vertex]
   }
 }
 
