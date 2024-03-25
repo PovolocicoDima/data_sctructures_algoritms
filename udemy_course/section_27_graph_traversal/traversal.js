@@ -48,6 +48,8 @@ class Graph {
 
   /**
    * DEPTH FIRST TRAVERSAL RECUIRSIVE
+   * пройти как можно дальше в глубину и найти условия выхода из рекурсии и
+   * потом её раскрутить до конца
    */
   dTFRecursive(startingNode) {
     const result = []
@@ -70,6 +72,9 @@ class Graph {
 
   /**
    * DEPTH FIRST TRAVERSAL ITERATIVE
+   * загнать первый элемент в стэк и потом через while цикл сделать
+   * тоже самое со всеми его дочерними элементами, в while сделать проверку
+   * на наличие элементов в посещенных
    */
   dtfIterative(startingNode) {
     const stack = [startingNode]
@@ -79,7 +84,6 @@ class Graph {
 
     visited[startingNode] = true
     while (stack.length) {
-      console.log(stack)
       currentVertex = stack.pop()
       result.push(currentVertex)
 
@@ -87,6 +91,40 @@ class Graph {
         if (!visited[neighbor]) {
           visited[neighbor] = true
           stack.push(neighbor)
+        }
+      })
+    }
+
+    return result
+  }
+
+  /**
+   * BREADTH FIRST TRAVERSAL
+   * проходить по графу по уровням. Что значит уровень?
+   * удаленность "шагов" от первого(переданного) элемента
+   * пока все элементы на одной удаленность не были посещены
+   * на следующий уровень не переходим
+   *
+   * Вывод: разница между depth first и breadth first в том как мы проходим граф
+   * в первом случае мы идём как можно глубже и потом разматываем оставшийся клубок,
+   * не важно это рекурсия или цикл while, а во втором случае мы идём поэтапно, ну или
+   * по этажам(хоть это и не дерево) графа.
+   */
+  breadthFirstTraversal(start) {
+    const queue = [start]
+    const result = []
+    const visited = {}
+    visited[start] = true
+    let currentVertex
+
+    while (queue.length) {
+      currentVertex = queue.shift()
+      result.push(currentVertex)
+
+      this.adjecencyList[currentVertex].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true
+          queue.push(neighbor)
         }
       })
     }
@@ -112,4 +150,4 @@ graph.addEdge('D', 'E')
 graph.addEdge('D', 'F')
 graph.addEdge('E', 'F')
 
-console.log(graph.dtfIterative('A'))
+console.log(graph.breadthFirstTraversal('A'))
